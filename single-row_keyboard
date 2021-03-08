@@ -1,0 +1,38 @@
+/*
+Author: Jonathan Pugliese
+Date: 03/06/2021
+Purpose: Given a string keyboard of length 26 indicating the layout of the keyboard (indexed from 0 to 25), 
+         initially your finger is at index 0. To type a character, you have to move your finger to the index of the desired character.
+         The time taken to move your finger from index i to index j is |i - j|.
+Assumptions: keyboard length is 26 characters
+             keyboard variable contains each English lowercase letter exactly once in some order.
+             1 <= word.length <= 10^4
+             word[i] is a lowercase English letter.
+
+*/
+public class Solution {
+    public int CalculateTime(string keyboard, string word) {
+     
+            int len = word.Length;
+            int k_len = keyboard.Length;
+            int i = 0;
+            int j = 0;
+            int prev = 0;
+            int indexer = 0;
+
+            while (i != len)
+            {
+                for (j = 0; j < k_len; j++)
+                {
+                    if (word[i].Equals(keyboard[j]))
+                    {
+                        indexer += Math.Abs(j - prev);
+                        prev = j;
+                        break;
+                    }
+                }
+                i++;
+            }
+        return indexer;        
+    }
+}
