@@ -1,0 +1,71 @@
+/*
+Author: Jonathan Pugliese
+Date: 03/08/2021
+Purpose: A strobogrammtic number is a number that looks the same when it is rotated 180 degrees.
+         Below is a trivial solution for identifying whether a number is strobogrammatic or not. Returns a boolean 'true' 
+         if strobogrammtic and a 'false' otherwise.
+Assumptions: 1 <= number length <= 50
+             'num' input consists of only digits
+             'num' does not consist of any leading zeros except for 0 itself
+
+*/
+public class Solution {
+    public bool IsStrobogrammatic(string num) {
+        StringBuilder sb = new StringBuilder(num.Length);
+        int strlen = num.Length;
+                if (num.Contains("2") || num.Contains("3") || num.Contains("4") ||
+                   num.Contains("5") || num.Contains("7"))
+                {
+                    return false;
+                }
+                else if ((strlen == 1) && (num.Contains("0") || num.Contains("1") || num.Contains("8")))
+                {
+                    return true;
+                }
+                else if ((strlen == 2) && (num == "00" || num == "11" || num == "88" ||
+                num == "69" || num == "96"))
+                {
+                    return true;
+                }
+                else if (strlen == 2)
+                {
+                    return false;
+                }
+        int i;
+        for(i = strlen - 1; i >=0; i--){
+            char c = num[i];
+            switch(c){
+                case '0':
+                    {
+                        sb.Append("0");
+                        break;
+                    }
+                case '1':
+                    {
+                        sb.Append("1");
+                        break;
+                    }
+                case '6':
+                    {
+                        sb.Append("9");
+                        break;
+                    }
+                case '8':
+                    {
+                        sb.Append("8");
+                        break;
+                    }
+                case '9':
+                    {
+                        sb.Append("6");
+                        break;
+                    }
+            }
+        }
+        string stroboNum = sb.ToString();
+        if(String.Compare(num,stroboNum) == 0){
+            return true;  
+        }
+        else{ return false;}
+    }
+}
